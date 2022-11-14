@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -37,6 +40,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'//https://developer.android.com/jetpack/androidx/releases/appcompat#version_151_3
     implementation 'com.google.android.material:material:1.7.0'//https://github.com/material-components/material-components-android/releases/tag/1.7.0
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'//https://developer.android.com/jetpack/androidx/releases/constraintlayout#constraintlayout-2.1.4
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'//https://developer.android.com/jetpack/androidx/releases/recyclerview?hl=ko#version_121_3
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'//https://square.github.io/retrofit/
     implementation 'com.google.code.gson:gson:2.8.6'//https://github.com/google/gson/tree/gson-parent-2.8.7
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0' //https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson/2.9.0
