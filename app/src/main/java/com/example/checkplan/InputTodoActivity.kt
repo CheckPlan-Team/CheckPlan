@@ -14,9 +14,7 @@ class InputTodoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val InputTodoBinding = ActivityInputTodoBinding.inflate(layoutInflater)
-        setContentView(InputTodoBinding.root)
-
-        //
+        //val InputTodoBinding = ActivityInputTodoBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_input_todo)
     }
 }

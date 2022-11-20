@@ -5,15 +5,15 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/PlanName"
+        android:id="@+id/PlanNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="일정"/>
+        android:text=""/>
 
-    <Chronometer
-        android:id="@+id/TimeRemaining"
+    <TextView
+        android:id="@+id/TimeRemainingView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/PlanName"
-        />
+        android:text=""/>
+
 </RelativeLayout>

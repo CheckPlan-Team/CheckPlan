@@ -11,7 +11,7 @@
         <entry key="app/src/main/res/layout/fragment_friend_management.xml" value="0.1099290780141844" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.1099290780141844" />
         <entry key="app/src/main/res/layout/fragment_plan_achievement_rate.xml" value="0.1099290780141844" />
-        <entry key="app/src/main/res/layout/fragment_plan_management.xml" value="0.1099290780141844" />
+        <entry key="app/src/main/res/layout/fragment_plan_management.xml" value="0.1" />
         <entry key="app/src/main/res/layout/itemview.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.1" />
       </map>

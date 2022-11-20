@@ -15,7 +15,7 @@ class PlanViewAdapter (private val context: Context, private val planViewList:Ar
 
     //뷰 홀더
     inner class PlanViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        private val planName = itemView.findViewById<TextView>(R.id.PlanName)
+        private val planName = itemView.findViewById<TextView>(R.id.PlanNameView)
         //private val planTimeRemaining = itemView.findViewById<Chronometer>(R.id.TimeRemaining)
 
         //항목의 뷰 데이터 초기화

@@ -1,29 +1,34 @@
 package com.example.checkplan
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.FrameLayout
 import com.example.checkplan.databinding.ActivityMainBinding
+import com.example.checkplan.databinding.FragmentPlanManagementBinding
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tabBinding = ActivityMainBinding.inflate(layoutInflater)
-        val tab1 : TabLayout.Tab = tabBinding.tabs.newTab()
+        val mainActivitiyBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        val tab1 : TabLayout.Tab = mainActivitiyBinding.tabs.newTab()
         tab1.text = "계획 달성률"
-        tabBinding.tabs.addTab(tab1)
+        mainActivitiyBinding.tabs.addTab(tab1)
 
-        val tab2 : TabLayout.Tab = tabBinding.tabs.newTab()
+        val tab2 : TabLayout.Tab = mainActivitiyBinding.tabs.newTab()
         tab2.text = "일정 관리"
-        tabBinding.tabs.addTab(tab2)
+        mainActivitiyBinding.tabs.addTab(tab2)
 
-        val tab3 : TabLayout.Tab = tabBinding.tabs.newTab()
+        val tab3 : TabLayout.Tab = mainActivitiyBinding.tabs.newTab()
         tab3.text = "친구 관리"
-        tabBinding.tabs.addTab(tab3)
+        mainActivitiyBinding.tabs.addTab(tab3)
 
         //탭을 선택하기 전에 기본 뷰로 fragmentOne을 출력
         supportFragmentManager.beginTransaction().replace(R.id.tabContent, PlanManagementFragment()).commit()
-        tabBinding.tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+        mainActivitiyBinding.tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             //탭 버튼을 눌렀을때 동작
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val transaction = supportFragmentManager.beginTransaction()
@@ -45,12 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
-        setContentView(tabBinding.root)
-
-
+        setContentView(mainActivitiyBinding.root)
     }
-
-
 
 }
