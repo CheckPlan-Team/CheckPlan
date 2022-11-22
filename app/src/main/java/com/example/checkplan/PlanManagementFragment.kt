@@ -8,13 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CalendarView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.checkplan.databinding.FragmentPlanManagementBinding
 import com.example.planview.PlanViewAdapter
 import com.example.planview.planviewVO
-import java.util.zip.Inflater
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,15 +57,9 @@ class PlanManagementFragment : Fragment() {
 
         //날짜를 선택했을때 그 날짜에 작성된 플랜 리스트를 리사이클러에 표시
         //현재 이부분 진행 중
-        val calendarViewBtn = view.findViewById<CalendarView>(R.id.Planner)
-        calendarViewBtn.setOnDateChangeListener(CalendarView.OnDateChangeListener {
-                //calendarView, i, i2, i3 매개변수를 이용해서 텍스트 날짜로 변환
-                //그후 해당 날짜와 관련된 플랜 리스트를 가져오기
-               calendarView, year, month, day ->{
-                    val date = "$year/$month/$day"
+        val calendarViewBtn = view.findViewById<MaterialCalendarView>(R.id.Planner)
 
-            }
-        })
+        //println(calendarViewBtn.dateTextAppearance)
 
         // Inflate the layout for this fragment
         return view

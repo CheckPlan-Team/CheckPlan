@@ -13,10 +13,14 @@
         android:layout_height="wrap_content"
         android:text="일정 관리 테스트 뷰" />
 
-    <CalendarView
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/Planner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#00F"
         />
 
     <!-- 리사이클러 뷰를 이용해 일정 목록 추가-->
