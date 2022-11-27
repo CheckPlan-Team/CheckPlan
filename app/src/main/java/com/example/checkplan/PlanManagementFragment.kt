@@ -10,9 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.CustomView.CustomCalendar
 import com.example.planview.PlanViewAdapter
 import com.example.planview.planviewVO
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,6 +32,9 @@ class PlanManagementFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+
+
     private var planList = arrayListOf<planviewVO>(planviewVO("계획1",0),planviewVO("계획2",0),planviewVO("계획3",0),planviewVO("계획4",0),planviewVO("계획5",0))
     private lateinit var mainActivity : MainActivity
 
@@ -57,9 +63,14 @@ class PlanManagementFragment : Fragment() {
 
         //날짜를 선택했을때 그 날짜에 작성된 플랜 리스트를 리사이클러에 표시
         //현재 이부분 진행 중
-        val calendarViewBtn = view.findViewById<MaterialCalendarView>(R.id.Planner)
+        val mcalendar = view.findViewById<MaterialCalendarView>(R.id.Calendar)
+        val customCalendar = CustomCalendar(mcalendar)
+        customCalendar.setEndTimeCalendar()
+        customCalendar.editCalendar()
+        customCalendar.applyDecorator()
+        //현재 날짜 정보를 가져와야 함
 
-        //println(calendarViewBtn.dateTextAppearance)
+
 
         // Inflate the layout for this fragment
         return view

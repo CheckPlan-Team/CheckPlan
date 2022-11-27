@@ -8,6 +8,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.example.checkplan.databinding.ActivityInputTodoBinding
 import android.os.Handler
+import android.widget.Button
+import android.widget.EditText
 
 //할일 목록을 작성(편집)하기 위한 액티비티
 class InputTodoActivity : AppCompatActivity() {
@@ -16,5 +18,12 @@ class InputTodoActivity : AppCompatActivity() {
 
         //val InputTodoBinding = ActivityInputTodoBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_input_todo)
+
+        val todoEdit = findViewById<EditText>(R.id.TodoEdit)
+        val saveBtn = findViewById<Button>(R.id.SaveTodo)
+        saveBtn.setOnClickListener {
+            todoEdit.text
+        }
+
     }
 }

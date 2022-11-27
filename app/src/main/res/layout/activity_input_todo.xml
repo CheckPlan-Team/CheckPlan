@@ -42,4 +42,15 @@
         app:layout_constraintStart_toStartOf="@+id/DateEdit"
         app:layout_constraintTop_toBottomOf="@+id/DateEdit" />
 
+    <Button
+        android:id="@+id/SaveTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="일정 추가"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TimeEdit"
+        app:layout_constraintVertical_bias="0.656"
+        tools:layout_editor_absoluteX="36dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
