@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.CustomView.CustomCalendar
 import com.example.planview.PlanViewAdapter
 import com.example.planview.planviewVO
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
-import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +34,7 @@ class PlanManagementFragment : Fragment() {
 
 
 
-    private var planList = arrayListOf<planviewVO>(planviewVO("계획1",0),planviewVO("계획2",0),planviewVO("계획3",0),planviewVO("계획4",0),planviewVO("계획5",0))
+    private var planList = arrayListOf<planviewVO>(planviewVO("추가된 플랜"))//플랜이 저장된 리스트
     private lateinit var mainActivity : MainActivity
 
 
@@ -60,16 +59,23 @@ class PlanManagementFragment : Fragment() {
             var mainintent : Intent = Intent(mainActivity, InputTodoActivity::class.java)
             startActivity(mainintent)
         }
+        //InputTodoActivity에서 데이터 받아오기
 
-        //날짜를 선택했을때 그 날짜에 작성된 플랜 리스트를 리사이클러에 표시
-        //현재 이부분 진행 중
+        //날짜를 선택했을때 그 날짜에 작성된 플랜 리스트를 리사이클러에 표시(아직 해결 못함)
         val mcalendar = view.findViewById<MaterialCalendarView>(R.id.Calendar)
         val customCalendar = CustomCalendar(mcalendar)
         customCalendar.setEndTimeCalendar()
         customCalendar.editCalendar()
         customCalendar.applyDecorator()
         //현재 날짜 정보를 가져와야 함
-
+        mcalendar.setOnDateChangedListener { widget, date, selected ->
+            //오늘날짜보다 이전 날짜를 선택하면 일정 추가 버튼을 비활성화(visible)
+            if(date.day<CalendarDay.today().day){
+                TodoBtn.visibility = View.INVISIBLE
+            }else{
+                TodoBtn.visibility = View.VISIBLE
+            }
+        }
 
 
         // Inflate the layout for this fragment
@@ -93,6 +99,8 @@ class PlanManagementFragment : Fragment() {
         val layout = LinearLayoutManager(mainActivity)
         recycler_view.layoutManager = layout
         recycler_view.setHasFixedSize(true)
+
+
 
     }
 

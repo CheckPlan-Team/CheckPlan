@@ -1,7 +1,9 @@
 package com.example.planview
 
-//Chronometer 시간 데이터 타입, 사용 방법을 알아봐야함
-class planviewVO (val planName : String, var timeRemaining : Long){
+import android.icu.util.Calendar
+import com.prolificinteractive.materialcalendarview.CalendarDay
 
+//날짜(년/월/일/시간), 계획목록
+class planviewVO ( val planName : String){
 
 }

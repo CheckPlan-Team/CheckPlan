@@ -11,16 +11,22 @@ import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.checkplan.R
 
+//리사이클러 뷰에 플랜목록을 읽어와서 보여줌
+
+
+//뷰 어댑터
 class PlanViewAdapter (private val context: Context, private val planViewList:ArrayList<planviewVO>) : RecyclerView.Adapter<PlanViewAdapter.PlanViewHolder>() {
 
     //뷰 홀더
     inner class PlanViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         private val planName = itemView.findViewById<TextView>(R.id.PlanNameView)
-        //private val planTimeRemaining = itemView.findViewById<Chronometer>(R.id.TimeRemaining)
+        //private val planTimeRemaining = itemView.findViewById<Chronometer>(R.id.TimeRemainingView)
 
         //항목의 뷰 데이터 초기화
         fun bind(planVO : planviewVO, context: Context){
+            //플랜명, 날짜, 시간을 초기화해야함
             planName.text=planVO.planName
+
         }
     }
 

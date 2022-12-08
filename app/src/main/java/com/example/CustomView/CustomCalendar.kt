@@ -13,9 +13,9 @@ class CustomCalendar (var mCalendar : MaterialCalendarView){
 
     val currentYear = startTimeCalendar.get(Calendar.YEAR)//현재 연도
     val currentMonth = startTimeCalendar.get(Calendar.MONTH)//현재 월
-    val currentDate = startTimeCalendar.get(Calendar.DATE)//현재 날짜
+    val currentDate = startTimeCalendar.get(Calendar.DATE)//현재 월의 날짜
 
-    val stCalendarDay = CalendarDay.from(currentYear,currentMonth,currentDate)//현재 년/월/일
+    val stCalendarDay = CalendarDay.from(currentYear,currentMonth,currentDate)//현재 년/월/일에 맞는 요일
     val enCalendarDay = CalendarDay.from(endTimeCalendar.get(Calendar.YEAR),endTimeCalendar.get(Calendar.MONTH),endTimeCalendar.get(Calendar.DATE))
     val sundayDecorator = CustomSundayDecorator()
     val saturdayDecorator = CustomSaturdayDecorator()

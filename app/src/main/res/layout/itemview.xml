@@ -11,7 +11,7 @@
         android:text=""/>
 
     <TextView
-        android:id="@+id/TimeRemainingView"
+        android:id="@+id/TimeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""/>
