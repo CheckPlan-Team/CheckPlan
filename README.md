@@ -6,7 +6,7 @@
 ***공부한 것들***
 + Activity
 
-+ Data Binding
++ View Binding
 
 + Material Calendar View
 
