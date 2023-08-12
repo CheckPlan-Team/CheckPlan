@@ -9,12 +9,12 @@
         <entry key="app/src/main/res/drawable/style_only_radius_40.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_input_todo.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.1099290780141844" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.10309017223910841" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/calendar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_friend_management.xml" value="0.1099290780141844" />
         <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.1099290780141844" />
         <entry key="app/src/main/res/layout/fragment_plan_achievement_rate.xml" value="0.1099290780141844" />
-        <entry key="app/src/main/res/layout/fragment_plan_management.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_plan_management.xml" value="0.11" />
         <entry key="app/src/main/res/layout/itemview.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
