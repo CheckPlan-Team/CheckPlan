@@ -64,7 +64,6 @@ class PlanManagementFragment : Fragment() {
         //날짜를 선택했을때 그 날짜에 작성된 플랜 리스트를 리사이클러에 표시(아직 해결 못함)
         val mcalendar = view.findViewById<MaterialCalendarView>(R.id.Calendar)
         val customCalendar = CustomCalendar(mcalendar)
-        customCalendar.setEndTimeCalendar()
         customCalendar.editCalendar()
         customCalendar.applyDecorator()
         //현재 날짜 정보를 가져와야 함

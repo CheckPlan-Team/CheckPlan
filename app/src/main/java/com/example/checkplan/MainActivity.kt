@@ -15,6 +15,7 @@ import com.google.android.material.tabs.TabLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,7 +59,11 @@ class MainActivity : AppCompatActivity() {
     private fun setSelectedDate(){
         /*widget은 MaterialCanendarView, date는 선택된 날짜, selected 날짜가 선택되었는지에 대한 상태*/
         binding.customCalendar.setOnDateChangedListener { widget, date, selected ->
-            val localDateOf: LocalDate = LocalDate.of(date.year,date.month,date.day)
+            println(date.date.toString())
+            println(date.year.toString())
+            println(date.month.toString())
+            println(date.day.toString())
+            val localDateOf: LocalDate = LocalDate.of(date.year,date.month+1,date.day)
             binding.outputDate.text = localDateOf.toString()
             if(date.isBefore(CalendarDay.today())){
                 binding.insertTodoBtn.visibility = View.INVISIBLE

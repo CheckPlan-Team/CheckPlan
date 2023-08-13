@@ -15,8 +15,8 @@ class CustomCalendar (var mCalendar : MaterialCalendarView){
     val currentMonth = startTimeCalendar.get(Calendar.MONTH)//현재 월
     val currentDate = startTimeCalendar.get(Calendar.DATE)//현재 월의 날짜
 
-    val stCalendarDay = CalendarDay.from(currentYear,currentMonth,currentDate)//현재 년/월/일에 맞는 요일
-    val enCalendarDay = CalendarDay.from(endTimeCalendar.get(Calendar.YEAR),endTimeCalendar.get(Calendar.MONTH),endTimeCalendar.get(Calendar.DATE))
+    val stCalendarDay = CalendarDay.from(currentYear,currentMonth,currentDate)//현재 년/월/일의 시작 구간
+    val enCalendarDay = CalendarDay.from(endTimeCalendar.get(Calendar.YEAR),endTimeCalendar.get(Calendar.MONTH),endTimeCalendar.get(Calendar.DATE))//현재 년/월/일의 끝 구간
     val sundayDecorator = CustomSundayDecorator()
     val saturdayDecorator = CustomSaturdayDecorator()
     val todayDecorator = CustomTodayDecorator(mCalendar.context)
@@ -24,12 +24,13 @@ class CustomCalendar (var mCalendar : MaterialCalendarView){
 
 
 
-    //마지막 달 설정
+    //설명 : 마지막 달 설정
     fun setEndTimeCalendar(){
+        endTimeCalendar.set(Calendar.MONTH, currentMonth+3)//이거 아직 이해가 안됨
         endTimeCalendar.set(Calendar.MONTH, currentMonth+3)
     }
 
-    //CustomCalendar 설정
+    //설명 : Calendar내의 주중 첫번째 요일, 최소 날짜와 최대 날짜, 보기 모드 등을 설정
     fun editCalendar(){
         mCalendar.state().edit()
             .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -39,7 +40,7 @@ class CustomCalendar (var mCalendar : MaterialCalendarView){
             .commit()
     }
 
-    //Decorator 적용
+    //설명 : Calendar에 Decorator 적용
     fun applyDecorator(){
         mCalendar.addDecorators(sundayDecorator,saturdayDecorator,todayDecorator,minmaxDecorator)
     }
