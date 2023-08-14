@@ -16,8 +16,8 @@
   - View Binding 기법을 사용하여 XML 레이아웃 파일에 선언된 다양한 View객체를 제어해 보았다.
  
 + Linear Layout
-  - Linear Layout을 사용해 여러 개의 View를 세로로 배치했다.
-  - Linear Layout을 중첩 시켜서 내부 Linear Layout에 여러 개의 버튼을 가로로 배치했다.
+  - Linear Layout을 사용해 다양한 View들을 선형으로 배치시켰다.
+  - Linear Layout을 중첩 시켜서 내부 Linear Layout에는 여러 개의 버튼을 배치했다.
 
 + Material Calendar View
   - 도형 드로어블 리소스를 사용해서 오늘 날짜를 강조할 수 있는 테두리를 만들고 Calendar에 적용시켰다.
