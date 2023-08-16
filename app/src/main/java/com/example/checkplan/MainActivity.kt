@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         addTodo()
         removeTodo()
         updateTodo()
-        getAllTodo()
 
         val customCalendar = CustomCalendar(binding.customCalendar)
             customCalendar.editCalendar()
@@ -55,25 +54,34 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    //설명 : 날짜 선택 시 날짜를 출력, 이전 날짜를 선택 시 보기 버튼만 활성화, 오늘 혹은 이후 날짜 선택 시 모든 일정 관리 버튼 활성화
+
+    //설명 : 날짜 선택 시 날짜를 출력
+    private fun getDate(date: CalendarDay){
+        val localDateOf: LocalDate = LocalDate.of(date.year,date.month+1,date.day)
+        binding.outputDate.text = localDateOf.toString()
+    }
+
+    //설명 : 오늘 혹은 이후 날짜 선택 시 버튼을 보여주고, 이전 날짜를 선택 시 버튼을 숨김
+    private fun hideOrShowButton(date: CalendarDay){
+        if(date.isBefore(CalendarDay.today())){
+            binding.insertTodoBtn.visibility = View.INVISIBLE
+            binding.deleteTodoBtn.visibility = View.INVISIBLE
+            binding.updateTodoBtn.visibility = View.INVISIBLE
+        }else{
+            binding.insertTodoBtn.visibility = View.VISIBLE
+            binding.deleteTodoBtn.visibility = View.VISIBLE
+            binding.updateTodoBtn.visibility = View.VISIBLE
+        }
+    }
+
+
+    //설명 : 날짜 선택 이벤트 설정,
     private fun setSelectedDate(){
         /*widget은 MaterialCanendarView, date는 선택된 날짜, selected 날짜가 선택되었는지에 대한 상태*/
         binding.customCalendar.setOnDateChangedListener { widget, date, selected ->
-            println(date.date.toString())
-            println(date.year.toString())
-            println(date.month.toString())
-            println(date.day.toString())
-            val localDateOf: LocalDate = LocalDate.of(date.year,date.month+1,date.day)
-            binding.outputDate.text = localDateOf.toString()
-            if(date.isBefore(CalendarDay.today())){
-                binding.insertTodoBtn.visibility = View.INVISIBLE
-                binding.deleteTodoBtn.visibility = View.INVISIBLE
-                binding.updateTodoBtn.visibility = View.INVISIBLE
-            }else{
-                binding.insertTodoBtn.visibility = View.VISIBLE
-                binding.deleteTodoBtn.visibility = View.VISIBLE
-                binding.updateTodoBtn.visibility = View.VISIBLE
-            }
+            hideOrShowButton(date)//날짜를 선택 시 보여주거나 숨김
+            getDate(date)//선택한 날짜 출력
+            getAllTodo()//선택된 날짜의 일정을 출력
         }
     }
 
@@ -97,6 +105,7 @@ class MainActivity : AppCompatActivity() {
     private fun addTodo(){
         binding.insertTodoBtn.setOnClickListener {
             try{
+                binding.editTodo.onCheckIsTextEditor()
                 databaseHelper.insertData(
                     binding.outputDate.text.toString().trim(),
                     binding.editTodo.text.toString().trim()
@@ -141,13 +150,11 @@ class MainActivity : AppCompatActivity() {
 
     //설명 : 선택된 날짜와 관련된 모든 일정 가져오기
     private fun getAllTodo(){
-        binding.viewTodoBtn.setOnClickListener {
-             try{
-                 val selectResult = databaseHelper.getAllData(binding.outputDate.text.toString().trim())
-                 showTodo(selectResult)
-             }catch(e: Exception){
-                 e.printStackTrace()
-             }
+        try{
+            val selectResult = databaseHelper.getAllData(binding.outputDate.text.toString().trim())
+            showTodo(selectResult)
+        }catch(e: Exception){
+            e.printStackTrace()
         }
     }
 }
