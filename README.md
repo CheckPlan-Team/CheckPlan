@@ -16,15 +16,15 @@
   - View Binding 기법을 사용하여 XML 레이아웃 파일에 선언된 다양한 View객체를 제어해 보았다.
  
 + Linear Layout
-  - Linear Layout을 사용해 다양한 View들을 선형으로 배치시켰다.
-  - Linear Layout을 중첩 시켜서 내부 Linear Layout에는 여러 개의 버튼을 배치했다.
+  - Linear Layout을 사용해 다양한 View들을 선형으로 배치했다.
+  - Linear Layout을 중첩 시켜서 내부 Linear Layout에 동일한 View를 선형으로 배치시켜 보았다.
 
 + Material Calendar View
   - 도형 드로어블 리소스를 사용해서 오늘 날짜를 강조할 수 있는 테두리를 만들고 Calendar에 적용시켰다.
   - 지난 날짜는 색상을 밝은 회색으로 표현하고, 일정을 조회만 가능하도록 구현했다.
 
 + SQLite
-  - 기초 쿼리문을 사용해 내부 DB에 일정 데이터를 CRUD할 수 있도록 하였다.
+  - 기초 쿼리문을 사용해 내부 DB에 일정 데이터를 CRUD할 수 있도록 했다.
 #
 
 # 앱 다듬기
