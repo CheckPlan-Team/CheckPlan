@@ -1,21 +1,15 @@
 package com.example.checkplan
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.text.TextUtils
 import android.view.View
-import android.widget.Button
-import android.widget.FrameLayout
+import android.widget.Toast
 import com.example.CustomView.CustomCalendar
 import com.example.DBHelper.DatabaseHelper
 import com.example.checkplan.databinding.ActivityMainBinding
-import com.example.checkplan.databinding.FragmentPlanManagementBinding
-import com.google.android.material.tabs.TabLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +20,9 @@ class MainActivity : AppCompatActivity() {
     private val databaseHelper: DatabaseHelper by lazy{
         DatabaseHelper.getInstance(applicationContext)
     }
+
+    private var todo: Todo? = null
+
 
     //설명 : 액티비티 생성
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //설명 : 날짜 선택 이벤트 설정,
+    //설명 : 날짜 선택 이벤트 설정
     private fun setSelectedDate(){
         /*widget은 MaterialCanendarView, date는 선택된 날짜, selected 날짜가 선택되었는지에 대한 상태*/
         binding.customCalendar.setOnDateChangedListener { widget, date, selected ->
@@ -101,17 +98,22 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //설명 : 날짜를 클릭하여 그 날짜에 일정을 추가
+
+
+    //설명 : 날짜를 클릭하여 그 날짜에 일정을 추가하는 기능
     private fun addTodo(){
         binding.insertTodoBtn.setOnClickListener {
+            val dateText = binding.outputDate.text.toString().trim()
+            val todoText = binding.editTodo.text.toString().trim()
             try{
-                binding.editTodo.onCheckIsTextEditor()
-                databaseHelper.insertData(
-                    binding.outputDate.text.toString().trim(),
-                    binding.editTodo.text.toString().trim()
-                )
-                clearEditTexts()
-                showTodo("일정이 추가됨")
+                if(TextUtils.isEmpty(dateText)||TextUtils.isEmpty(todoText)){
+                    Toast.makeText(this,"날짜 선택 또는 일정을 입력하세요",Toast.LENGTH_SHORT).show()
+                }else{
+                    todo = Todo(dateText,todoText)
+                    databaseHelper.insertData(todo!!)
+                    clearEditTexts()
+                    Toast.makeText(this,"일정이 추가됨",Toast.LENGTH_SHORT).show()
+                }
             }catch(e: Exception){
                 e.printStackTrace()
             }
@@ -121,11 +123,11 @@ class MainActivity : AppCompatActivity() {
     //설명 : 날짜를 누르고 id와 일정을 입력하면 기존 일정이 변경됨
     private fun updateTodo(){
         binding.updateTodoBtn.setOnClickListener {
+            val dateText = binding.editID.toString().trim()
+            val todoText = binding.editTodo.toString().trim()
+            todo = Todo(dateText, todoText)
             try{
-                databaseHelper.updateData(
-                    binding.editID.text.toString().trim(),
-                    binding.editTodo.text.toString().trim()
-                )
+                databaseHelper.updateData(todo!!)
                 clearEditTexts()
                 showTodo("일정이 변경됨")
             }catch(e: Exception){
@@ -150,8 +152,10 @@ class MainActivity : AppCompatActivity() {
 
     //설명 : 선택된 날짜와 관련된 모든 일정 가져오기
     private fun getAllTodo(){
+        val dateText = binding.outputDate.text.toString().trim()
+        todo = Todo(dateText,null)
         try{
-            val selectResult = databaseHelper.getAllData(binding.outputDate.text.toString().trim())
+            val selectResult = databaseHelper.getAllData(todo!!)
             showTodo(selectResult)
         }catch(e: Exception){
             e.printStackTrace()

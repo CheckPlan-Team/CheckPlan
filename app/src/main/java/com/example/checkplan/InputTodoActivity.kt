@@ -48,10 +48,10 @@ class InputTodoActivity : AppCompatActivity() {
 
             //2.데이터베이스에 플랜 리스트의 각 요소(플랜 뷰)를 저장
             try{
-                dbHelper.insertData(
-                    timeEdit.hour.toString().trim() + ":" + timeEdit.minute.toString().trim(),
-                    todoEdit.text.toString().trim()
-                )
+                //dbHelper.insertData(
+                    //timeEdit.hour.toString().trim() + ":" + timeEdit.minute.toString().trim(),
+                    //todoEdit.text.toString().trim()
+                //)
                 clearEditTexts()
                 showTxt("Data inserted")
             }catch(e : Exception){

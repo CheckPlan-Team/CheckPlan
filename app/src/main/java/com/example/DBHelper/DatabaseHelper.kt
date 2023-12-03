@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.checkplan.Todo
 
 
 class DatabaseHelper private constructor(context : Context) :
@@ -18,6 +19,8 @@ class DatabaseHelper private constructor(context : Context) :
         const val COL1_ID = "_ID"
         const val COL2_DATETIME = "_DATETIME"
         const val COL3_PLAN = "_PLAN" //나중에 ArrayList로 변경
+
+        val todo : Todo? = null
 
 
 
@@ -60,18 +63,18 @@ class DatabaseHelper private constructor(context : Context) :
 
 
     //기능 : INSERT문을 사용해서 테이블에 일정을 추가한다.
-    fun insertData(date: String, plan: String){
+    fun insertData(todo: Todo){
         val db : SQLiteDatabase = this.writableDatabase
         //('와 ')은 특수문자(와 )를 사용한것이다.(영상 27:12 참고)
-        val insertQuery: String = "INSERT INTO $TABLE_NAME($COL2_DATETIME,$COL3_PLAN) VALUES('$date','$plan');"
+        val insertQuery: String = "INSERT INTO $TABLE_NAME($COL2_DATETIME,$COL3_PLAN) VALUES('${todo.date}','${todo.plan}');"
         db.execSQL(insertQuery)
     }
 
 
     /*기능 : id를 고유키로 갖고있는 데이터를 갱신*/
-    fun updateData(id: String, plan: String){
+    fun updateData(todo:Todo){
         val db : SQLiteDatabase = this.writableDatabase
-        val updateQuery: String = "UPDATE $TABLE_NAME SET $COL3_PLAN = '$plan' WHERE $COL1_ID = '$id';"
+        val updateQuery: String = "UPDATE $TABLE_NAME SET $COL3_PLAN = '${todo.plan}' WHERE $COL1_ID = '$id';"
         db.execSQL(updateQuery)
     }
 
@@ -85,19 +88,16 @@ class DatabaseHelper private constructor(context : Context) :
 
 
     /*기능 : date와 일치하는 데이터를 가져옴*/
-    fun getAllData(date: String) : String{
-        var result = "No data in DB"
+    fun getAllData(todo: Todo) : String{
+        var result = "No data in DB\n\n"
         val db : SQLiteDatabase = this.readableDatabase
-        //WHERE절에서 SQLite의 date함수를 호출해서 사용하도록 쿼리문을 구성하려고함
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME WHERE date($COL2_DATETIME) = '$date';", null)
-
+        val cursor = db.rawQuery("SELECT $COL1_ID,$COL3_PLAN FROM $TABLE_NAME WHERE date($COL2_DATETIME) = '${todo.date}';", null)
         try{
             if(cursor.count != 0){
                 val stringBuffer = StringBuffer()
                 while(cursor.moveToNext()){
                     stringBuffer.append("ID : " + cursor.getInt(0).toString()+"\n")
-                    stringBuffer.append("날짜 : " + cursor.getString(1).toString()+"\n")
-                    stringBuffer.append("일정 : " + cursor.getString(2).toString()+"\n\n")
+                    stringBuffer.append("일정 : " + cursor.getString(1).toString()+"\n\n")
                 }
                 result = stringBuffer.toString()
             }
